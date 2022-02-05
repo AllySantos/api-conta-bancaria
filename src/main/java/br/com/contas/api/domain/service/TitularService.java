@@ -41,7 +41,7 @@ public class TitularService {
 			}
 		
 			
-			throw new DomainException("Já existe um usuario com este CPF");	
+			throw new DomainException("Já existe uma conta com este CPF");	
 		}
 		
 		
@@ -49,7 +49,7 @@ public class TitularService {
 		
 	}
 	
-	
+
 	private boolean isCPFValido(String cpf) {
 		
 		cpfValidator = new CPFValidator();
@@ -58,9 +58,20 @@ public class TitularService {
 		List<ValidationMessage> erros = cpfValidator.invalidMessagesFor(cpf); 
 		
 		if(erros.size() > 0) {
-			return false;
+			
+			throw new DomainException(listaErros(erros));
 		}
 
 		return true;
+	}
+	
+	private String listaErros(List<ValidationMessage> lista) {
+		String erros = null;
+		
+		for(ValidationMessage erro : lista) {
+			erros += erro.getMessage() + "\n";
+		}
+		
+		return erros;
 	}
 }

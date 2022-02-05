@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.contas.api.domain.model.Titular;
-import br.com.contas.api.domain.service.TitularService;
+import br.com.contas.api.domain.model.Conta;
+import br.com.contas.api.domain.service.ContaService;
 import br.com.contas.api.dto.input.TitularInput;
 
 @RestController
@@ -20,14 +20,14 @@ import br.com.contas.api.dto.input.TitularInput;
 public class ContaController {
 
 	@Autowired
-	TitularService titularService;
+	ContaService contaService;
 	
-	@PostMapping
+	@PostMapping("/cadastro")
 	@ResponseStatus(code = HttpStatus.CREATED)
-	public ResponseEntity<Titular> criarConta(@Valid @RequestBody TitularInput input){
+	public ResponseEntity<Conta> criarConta(@Valid @RequestBody TitularInput input){
 		
-		Titular titular = titularService.salvarTitular(input);
+		Conta conta = contaService.salvarConta(input);
 		
-		return ResponseEntity.ok(titular);
+		return ResponseEntity.ok(conta);
 	}
 }
