@@ -25,31 +25,41 @@ public class TitularService {
 	@Transactional
 	public Titular salvarTitular(TitularInput input) {
 		
-		if(isCPFValido(input.getCpf())) {
-			
-			String regexCpf = "[^0-9]";
-			
-			String cpf = input.getCpf().replaceAll(regexCpf, "");
-			
-			Titular titularExiste = titularRepository.findByCpf(cpf).orElse(null);
-					
-			
-			if(titularExiste == null) {
-				Titular novoTitular = new Titular(input.getNome(), cpf);
+		if(isNomeCompleto(input.getNome())) {
+			if(isCPFValido(input.getCpf())) {
+				
+				String regexCpf = "[^0-9]";
+				
+				String cpf = input.getCpf().replaceAll(regexCpf, "");
+				
+				Titular titularExiste = titularRepository.findByCpf(cpf).orElse(null);
+						
+				
+				if(titularExiste == null) {
+					Titular novoTitular = new Titular(input.getNome(), cpf);
 
-				return titularRepository.save(novoTitular);
-			}
-		
+					return titularRepository.save(novoTitular);
+				}
 			
-			throw new DomainException("Já existe uma conta com este CPF");	
+				
+				throw new DomainException("Já existe uma conta com este CPF");	
+			}
+			
+			
+			throw new DomainException("CPF digitado foi invalido");
 		}
 		
-		
-		throw new DomainException("CPF digitado foi invalido");
+		throw new DomainException("É necessário o nome completo para abrir uma conta");
+
 		
 	}
 	
 
+	private boolean isNomeCompleto(String nome) {
+		return nome.contains(" ");
+	}
+	
+	
 	private boolean isCPFValido(String cpf) {
 		
 		cpfValidator = new CPFValidator();

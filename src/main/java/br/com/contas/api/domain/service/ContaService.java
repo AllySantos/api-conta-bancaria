@@ -5,6 +5,7 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import br.com.contas.api.domain.exception.DomainException;
 import br.com.contas.api.domain.model.Conta;
 import br.com.contas.api.domain.model.Titular;
 import br.com.contas.api.domain.repository.ContaRepository;
@@ -29,4 +30,21 @@ public class ContaService {
 		return contaRepository.save(novaConta);
 		
 	}
+	
+	public Conta atualizarSaldoConta(Conta conta, float valor) {
+		if(!contaRepository.existsById(conta.getId())) {
+			
+			conta.setId(conta.getId());
+			
+			Float novoSaldo = conta.getSaldo() + valor;
+			
+			conta.setSaldo(novoSaldo);
+			
+			contaRepository.save(conta);
+		}
+		
+		throw new DomainException("Conta não existe");
+	}
+	
+
 }

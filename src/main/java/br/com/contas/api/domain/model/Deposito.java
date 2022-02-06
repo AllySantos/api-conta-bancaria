@@ -4,20 +4,22 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.validation.constraints.Max;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Size;
 
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @Getter
 @Setter
 @Entity
 @NoArgsConstructor
-public class Titular {
+public class Deposito {
 
 	@EqualsAndHashCode.Include
 	@Id
@@ -25,16 +27,10 @@ public class Titular {
 	private long id;
 	
 	@NotBlank
-	@Size(max = 100, message = "Nome não pode ter mais de 100 caracteres")
-	private String nome;
+	@ManyToOne
+	private Conta conta;
 	
 	@NotBlank
-	@Size(max = 11, message = "CPF não pode ter mais de 11 caracteres")
-	private String cpf;
-	
-	
-	public Titular(String nome, String cpf) {
-		setNome(nome);
-		setCpf(cpf);
-	}
+	@Max(value= 2000, message = "Valor do depósito não pode ser maior que 2000")
+	private float valor;
 }
