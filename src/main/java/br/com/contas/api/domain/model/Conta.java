@@ -5,22 +5,27 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
-import javax.persistence.SequenceGenerator;
 import javax.validation.constraints.PositiveOrZero;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @Getter
 @Setter
 @Entity
+@AllArgsConstructor
+@NoArgsConstructor
 public class Conta {
 	
 	@EqualsAndHashCode.Include
-	@SequenceGenerator(name="conta_sequence", initialValue = 1000)
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator="conta_sequence")
+
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Id
 	private long id;
 	
@@ -28,6 +33,7 @@ public class Conta {
 	private float saldo;
 	
 	@OneToOne
+	@JsonIgnore
 	private Titular titular;
 	
 	
