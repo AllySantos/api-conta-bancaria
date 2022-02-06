@@ -12,7 +12,7 @@ import br.com.caelum.stella.validation.CPFValidator;
 import br.com.contas.api.domain.exception.DomainException;
 import br.com.contas.api.domain.model.Titular;
 import br.com.contas.api.domain.repository.TitularRepository;
-import br.com.contas.api.dto.input.TitularInput;
+import br.com.contas.api.input.TitularInput;
 
 @Service
 public class TitularService {

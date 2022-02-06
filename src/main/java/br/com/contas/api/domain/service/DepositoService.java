@@ -2,6 +2,8 @@ package br.com.contas.api.domain.service;
 
 import java.time.LocalDateTime;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -10,7 +12,7 @@ import br.com.contas.api.domain.model.Conta;
 import br.com.contas.api.domain.model.Deposito;
 import br.com.contas.api.domain.repository.ContaRepository;
 import br.com.contas.api.domain.repository.DepositoRepository;
-import br.com.contas.api.dto.input.DepositoInput;
+import br.com.contas.api.input.DepositoInput;
 
 @Service
 public class DepositoService {
@@ -23,7 +25,7 @@ public class DepositoService {
 	@Autowired
 	ContaService contaService;
 	
-	
+	@Transactional
 	public Deposito realizarDeposito(DepositoInput input) {
 		
 		

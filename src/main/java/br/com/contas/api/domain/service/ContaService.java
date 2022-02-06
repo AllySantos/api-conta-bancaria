@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import br.com.contas.api.domain.model.Conta;
 import br.com.contas.api.domain.model.Titular;
 import br.com.contas.api.domain.repository.ContaRepository;
-import br.com.contas.api.dto.input.TitularInput;
+import br.com.contas.api.input.TitularInput;
 
 @Service
 public class ContaService {
@@ -30,14 +30,15 @@ public class ContaService {
 
 	}
 
-	public Conta atualizarSaldoConta(Conta conta, float valor) {
+	public void atualizarSaldoConta(Conta conta, float valor) {
+		
 		conta.setId(conta.getId());
 
 		Float novoSaldo = conta.getSaldo() + valor;
 
 		conta.setSaldo(novoSaldo);
 
-		return contaRepository.save(conta);
+		contaRepository.save(conta);
 	}
 
 	public boolean isSaldoDisponivel(float saldoConta, float valor) {

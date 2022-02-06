@@ -61,6 +61,9 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler{
 		return handleExceptionInternal(dm, problema, new HttpHeaders(), status, request);
 	}
 	
+	
+	//Excecao da dependencia Stella
+	
 	@ExceptionHandler(InvalidStateException.class)
 	public ResponseEntity<Object> handleInvalidaException(InvalidStateException ise, WebRequest request){
 		HttpStatus status = HttpStatus.BAD_REQUEST;

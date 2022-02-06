@@ -1,11 +1,14 @@
 package br.com.contas.api.domain.model;
 
+import java.time.LocalDateTime;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Size;
+import javax.persistence.ManyToOne;
+
+import com.sun.istack.NotNull;
 
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -17,24 +20,24 @@ import lombok.Setter;
 @Setter
 @Entity
 @NoArgsConstructor
-public class Titular {
+public class Transferencia {
 
 	@EqualsAndHashCode.Include
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 	
-	@NotBlank
-	private String nome;
+	@NotNull
+	@ManyToOne
+	private Conta contaOrigem;
 	
-	@NotBlank
-	@Size(max = 11)
+	@NotNull
+	@ManyToOne
+	private Conta contaDestino;
 	
-	private String cpf;
+	@NotNull
+	private float valor;
 	
-	
-	public Titular(String nome, String cpf) {
-		setNome(nome);
-		setCpf(cpf);
-	}
+	@NotNull
+	private LocalDateTime data;
 }

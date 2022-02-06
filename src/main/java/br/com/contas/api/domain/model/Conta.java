@@ -7,8 +7,6 @@ import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.validation.constraints.PositiveOrZero;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -33,7 +31,6 @@ public class Conta {
 	private float saldo;
 	
 	@OneToOne
-	@JsonIgnore
 	private Titular titular;
 	
 	

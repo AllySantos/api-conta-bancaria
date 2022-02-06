@@ -1,4 +1,4 @@
-package br.com.contas.api.dto.input;
+package br.com.contas.api.input;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;

@@ -11,23 +11,24 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.contas.api.domain.model.Deposito;
-import br.com.contas.api.domain.service.DepositoService;
-import br.com.contas.api.input.DepositoInput;
+import br.com.contas.api.domain.model.Transferencia;
+import br.com.contas.api.domain.service.TransferenciaService;
+import br.com.contas.api.input.TransferenciaInput;
 
 @RestController
-@RequestMapping("/depositos")
-public class DepositoController {
+@RequestMapping("/transferencias")
+public class TransferenciaController {
 
 	@Autowired
-	DepositoService depositoService;
+	private TransferenciaService transferenciaService;
+	
 	
 	@PostMapping
 	@ResponseStatus(code = HttpStatus.CREATED)
-	public ResponseEntity<Deposito> realizarDeposito(@Valid @RequestBody DepositoInput input) {
+	public ResponseEntity<Transferencia> realizarTransferencia(@Valid @RequestBody TransferenciaInput input){
 		
-		Deposito deposito = depositoService.realizarDeposito(input);
+		Transferencia transferencia = transferenciaService.realizarTransferencia(input);
 		
-		return ResponseEntity.ok(deposito);
+		return ResponseEntity.ok(transferencia);
 	}
 }
