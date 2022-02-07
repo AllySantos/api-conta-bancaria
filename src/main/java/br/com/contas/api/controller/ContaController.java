@@ -1,13 +1,10 @@
 package br.com.contas.api.controller;
 
-import java.util.List;
-
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -29,14 +26,7 @@ public class ContaController {
 	@Autowired
 	ContaService contaService;
 	
-	//TODO: Usar no desenvolvimento para ver os valores cadastrados , tirar depois!!!
-	
-	@GetMapping
-	public List<Conta> getAllContas() {
-		return contaRepository.findAll();
-	}
-	
-	
+
 	@PostMapping("/cadastro")
 	@ResponseStatus(code = HttpStatus.CREATED)
 	public ResponseEntity<Conta> criarConta(@Valid @RequestBody TitularInput input){

@@ -20,9 +20,16 @@ public class Problema {
 	private List<Campo> campos;
 	
 	@Getter
+	@Setter
 	@AllArgsConstructor
+
 	public static class Campo{
+
 		private String nome;
+	
 		private String mensagem;
+		
+
+		
 	}
 }
