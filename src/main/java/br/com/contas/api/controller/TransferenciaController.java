@@ -11,9 +11,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.contas.api.domain.model.Transferencia;
 import br.com.contas.api.domain.service.TransferenciaService;
-import br.com.contas.api.input.TransferenciaInput;
+import br.com.contas.api.dto.TransferenciaDTO;
+import br.com.contas.api.dto.input.TransferenciaInput;
 
 @RestController
 @RequestMapping("/transferencias")
@@ -25,9 +25,9 @@ public class TransferenciaController {
 	
 	@PostMapping
 	@ResponseStatus(code = HttpStatus.CREATED)
-	public ResponseEntity<Transferencia> realizarTransferencia(@Valid @RequestBody TransferenciaInput input){
+	public ResponseEntity<TransferenciaDTO> realizarTransferencia(@Valid @RequestBody TransferenciaInput input){
 		
-		Transferencia transferencia = transferenciaService.realizarTransferencia(input);
+		TransferenciaDTO transferencia = transferenciaService.realizarTransferencia(input);
 		
 		return ResponseEntity.ok(transferencia);
 	}

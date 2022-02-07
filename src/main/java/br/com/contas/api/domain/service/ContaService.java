@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import br.com.contas.api.domain.model.Conta;
 import br.com.contas.api.domain.model.Titular;
 import br.com.contas.api.domain.repository.ContaRepository;
-import br.com.contas.api.input.TitularInput;
+import br.com.contas.api.dto.input.TitularInput;
 
 @Service
 public class ContaService {

@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 
 import javax.transaction.Transactional;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,7 +13,8 @@ import br.com.contas.api.domain.model.Conta;
 import br.com.contas.api.domain.model.Transferencia;
 import br.com.contas.api.domain.repository.ContaRepository;
 import br.com.contas.api.domain.repository.TransferenciaRepository;
-import br.com.contas.api.input.TransferenciaInput;
+import br.com.contas.api.dto.TransferenciaDTO;
+import br.com.contas.api.dto.input.TransferenciaInput;
 
 @Service
 public class TransferenciaService {
@@ -26,10 +28,13 @@ public class TransferenciaService {
 	@Autowired
 	ContaService contaService;
 	
+	@Autowired
+	ModelMapper modelMapper;
+	
 	
 	
 	@Transactional
-	public Transferencia realizarTransferencia(TransferenciaInput input) {
+	public TransferenciaDTO realizarTransferencia(TransferenciaInput input) {
 	
 		if(isContaExistente(input.getIdContaOrigem()) 
 		&& isContaExistente(input.getIdContaDestino())) {
@@ -40,7 +45,7 @@ public class TransferenciaService {
 				
 				Transferencia novaTransferencia = new Transferencia();
 				
-				Conta contaDestino= contaRepository.findById(input.getIdContaDestino()).orElse(null);
+				Conta contaDestino = contaRepository.findById(input.getIdContaDestino()).orElse(null);
 
 				contaService.atualizarSaldoConta(contaOrigem, -input.getValor());
 				contaService.atualizarSaldoConta(contaDestino, input.getValor());
@@ -50,7 +55,9 @@ public class TransferenciaService {
 				novaTransferencia.setData(LocalDateTime.now());
 				novaTransferencia.setValor(input.getValor());
 				
-				return transferenciaRepository.save(novaTransferencia);
+				transferenciaRepository.save(novaTransferencia);
+		
+				return modelMapper.map(novaTransferencia, TransferenciaDTO.class);
 				
 			}
 			
@@ -60,6 +67,9 @@ public class TransferenciaService {
 		
 		throw new DomainException("Conta de origem ou destino não existe");
 	}
+	
+	
+	
 	
 	
 	private boolean isContaExistente(long idConta) {

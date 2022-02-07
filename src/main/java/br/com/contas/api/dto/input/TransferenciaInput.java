@@ -1,4 +1,4 @@
-package br.com.contas.api.input;
+package br.com.contas.api.dto.input;
 
 import com.sun.istack.NotNull;
 

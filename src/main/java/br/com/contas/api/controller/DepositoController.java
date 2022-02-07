@@ -11,9 +11,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.contas.api.domain.model.Deposito;
 import br.com.contas.api.domain.service.DepositoService;
-import br.com.contas.api.input.DepositoInput;
+import br.com.contas.api.dto.DepositoDTO;
+import br.com.contas.api.dto.input.DepositoInput;
 
 @RestController
 @RequestMapping("/depositos")
@@ -24,9 +24,9 @@ public class DepositoController {
 	
 	@PostMapping
 	@ResponseStatus(code = HttpStatus.CREATED)
-	public ResponseEntity<Deposito> realizarDeposito(@Valid @RequestBody DepositoInput input) {
+	public ResponseEntity<DepositoDTO> realizarDeposito(@Valid @RequestBody DepositoInput input) {
 		
-		Deposito deposito = depositoService.realizarDeposito(input);
+		DepositoDTO deposito = depositoService.realizarDeposito(input);
 		
 		return ResponseEntity.ok(deposito);
 	}

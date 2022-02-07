@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 
 import javax.transaction.Transactional;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,21 +13,26 @@ import br.com.contas.api.domain.model.Conta;
 import br.com.contas.api.domain.model.Deposito;
 import br.com.contas.api.domain.repository.ContaRepository;
 import br.com.contas.api.domain.repository.DepositoRepository;
-import br.com.contas.api.input.DepositoInput;
+import br.com.contas.api.dto.DepositoDTO;
+import br.com.contas.api.dto.input.DepositoInput;
 
 @Service
 public class DepositoService {
 
 	@Autowired
 	ContaRepository contaRepository;
+	
 	@Autowired
 	DepositoRepository depositoRepository;
 	
 	@Autowired
 	ContaService contaService;
 	
+	@Autowired
+	ModelMapper modelMapper;
+	
 	@Transactional
-	public Deposito realizarDeposito(DepositoInput input) {
+	public DepositoDTO realizarDeposito(DepositoInput input) {
 		
 		
 		Conta conta = contaRepository.findById(input.getIdConta()).orElse(null);
@@ -42,7 +48,9 @@ public class DepositoService {
 				
 				contaService.atualizarSaldoConta(conta, input.getValor());
 				
-				return depositoRepository.save(novoDeposito);
+				depositoRepository.save(novoDeposito);
+				
+				return modelMapper.map(novoDeposito, DepositoDTO.class);
 			}
 			
 			throw new DomainException("Valor do depósito deve ser menor ou igual R$ 2000,00");

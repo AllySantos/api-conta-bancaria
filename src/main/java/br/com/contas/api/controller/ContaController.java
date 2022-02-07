@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 import br.com.contas.api.domain.model.Conta;
 import br.com.contas.api.domain.repository.ContaRepository;
 import br.com.contas.api.domain.service.ContaService;
-import br.com.contas.api.input.TitularInput;
+import br.com.contas.api.dto.input.TitularInput;
 
 @RestController
 @RequestMapping("/contas")

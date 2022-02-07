@@ -1,4 +1,4 @@
-package br.com.contas.api;
+package br.com.contas.api.dto;
 
 import lombok.Getter;
 import lombok.Setter;
