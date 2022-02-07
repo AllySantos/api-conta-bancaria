@@ -42,7 +42,7 @@ public class ContaService {
 	}
 
 	public boolean isSaldoDisponivel(float saldoConta, float valor) {
-		return (saldoConta - valor > 0);
+		return (saldoConta - valor >= 0);
 	}
 
 }

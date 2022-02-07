@@ -44,7 +44,7 @@ public class DepositoService {
 				
 				novoDeposito.setConta(conta);
 				novoDeposito.setValor(input.getValor());
-				novoDeposito.setData(LocalDateTime.now());
+				novoDeposito.setData(LocalDateTime.now().withNano(0));
 				
 				contaService.atualizarSaldoConta(conta, input.getValor());
 				
