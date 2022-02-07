@@ -1,6 +1,5 @@
 package br.com.contas.api.exceptionhandler;
 
-
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -18,18 +17,15 @@ public class Problema {
 	private Integer status;
 	private String titulo;
 	private List<Campo> campos;
-	
+
 	@Getter
 	@Setter
 	@AllArgsConstructor
-
-	public static class Campo{
+	public static class Campo {
 
 		private String nome;
-	
-		private String mensagem;
-		
 
-		
+		private String mensagem;
+
 	}
 }

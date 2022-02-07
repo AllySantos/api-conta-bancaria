@@ -9,10 +9,8 @@ import lombok.Setter;
 @Setter
 public class DepositoInput {
 
-
 	@NotNull
 	private long idConta;
-	
 
 	@NotNull
 	private float valor;
