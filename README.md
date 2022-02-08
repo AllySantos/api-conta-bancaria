@@ -34,27 +34,36 @@ Depois de selecionado, o programa já o identifica como projeto Maven e localiza
 
 <br>
 
+### Criação de Banco dentro do Postgres
+
+Da forma que você preferir, não se esqueça de criar o banco de dados no Postgres antes de executar o projeto.
+
+_Se você utiliza o pgAdmin, clique com o botão direito em "Databases" > Create > Database_
+
+<br>
+
 ### Mudança de arquivo application.properties
 
-Após a importação e antes da execução, é necessário mudar o arquivo application.properties pois ele está configurado para o ambiente de produção. 
+Após a importação e antes da execução, é necessário mudar o arquivo `application.properties` pois ele está configurado para o ambiente de produção. 
+
 Ele está localizado dentro do projeto em:
 
 **src > main > resources**
 
 Apague todo o conteúdo do arquivo e o substitua pelo código abaixo. 
 
-❗ Não se esqueça de mudar o **username** e **password** do arquivo, bem como, se achar necessário, o nome do banco.
+❗ Não se esqueça de mudar o **username**, **password**  e o **nome do banco**
 
 ```
 ## PostgresSQL
-spring.datasource.url=jdbc:postgresql://localhost:5432/bdContaBancaria
+spring.datasource.url=jdbc:postgresql://localhost:5432/[seuBancoDeDados]
 spring.datasource.username=[seuUsername]
 spring.datasource.password=[suaSenha]
 
 ## Hibernate
 spring.jpa.database-platform=org.hibernate.dialect.PostgreSQLDialect
 spring.jpa.show-sql=false
-spring.jpa.hibernate.ddl-auto=validate
+spring.jpa.hibernate.ddl-auto=update
 
 ```
 <br>
