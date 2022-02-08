@@ -7,7 +7,7 @@ Ela foi desenvolvida com Spring Boot e Postgres.
 
 ## Documentação da API
 
-Você pode encontrar a documentação completa, acessando esse link: [Link para a documentação](https://conta-bancaria-api.herokuapp.com/swagger-ui/index.html)
+Você pode encontrar a documentação completa, acessando esse [link](https://conta-bancaria-api.herokuapp.com/swagger-ui/index.html)
 
 
 ## Utilização
@@ -26,18 +26,20 @@ Para utilizar o código em sua máquina local, é necessário possuir o Postgres
 ### Importando projeto
 Após o download/clone do repositório, no SpringToolSuite (STS) vá em
 
-** Import > Select > Maven > Existing Maven Project  **
+**Import > Select > Maven > Existing Maven Project **
 
 Na propriedade “Root Directory” clique em Browser e selecione a pasta onde está o projeto.
 
 Depois de selecionado, o programa já o identifica como projeto Maven e localiza a pasta pom.xml
+
+<br>
 
 ### Mudança de arquivo application.properties
 
 Após a importação e antes da execução, é necessário mudar o arquivo application.properties pois ele está configurado para o ambiente de produção. 
 Ele está localizado dentro do projeto em:
 
-** src > main > resources **
+**src > main > resources**
 
 Apague todo o conteúdo do arquivo e o substitua pelo código abaixo. 
 
@@ -55,5 +57,5 @@ spring.jpa.show-sql=false
 spring.jpa.hibernate.ddl-auto=validate
 
 ```
-
+<br>
 Após essas modificações, é só executar o projeto :)
