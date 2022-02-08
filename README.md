@@ -21,16 +21,16 @@ seguida da rota desejada, sempre de acordo com a documentação.
 
 ## Download e execução do código
 
-Para utilizar o código em sua máquina local, é necessário possuir o Postgres e o Spring Tool Suite instalados. 
-
+Para utilizar o código em sua máquina local, é necessário possuir o **Postgres e o Spring Tool Suite** instalados. 
+<br>
 ### Importando projeto
 Após o download/clone do repositório, no SpringToolSuite (STS) vá em
 
-**Import > Select > Maven > Existing Maven Project **
+**Import > Select > Maven > Existing Maven Project**
 
-Na propriedade “Root Directory” clique em Browser e selecione a pasta onde está o projeto.
+Na propriedade **Root Directory** clique em **Browser** e selecione a pasta onde está o projeto.
 
-Depois de selecionado, o programa já o identifica como projeto Maven e localiza a pasta pom.xml
+Depois de selecionado, o programa já o identifica como projeto Maven e localiza o arquivo pom.xml
 
 <br>
 
@@ -47,9 +47,9 @@ Apague todo o conteúdo do arquivo e o substitua pelo código abaixo.
 
 ```
 ## PostgresSQL
-spring.datasource.url=jdbc:postgresql://localhost:5432/bdTesteConta
-spring.datasource.username=postgres
-spring.datasource.password=admin
+spring.datasource.url=jdbc:postgresql://localhost:5432/bdContaBancaria
+spring.datasource.username=[seuUsername]
+spring.datasource.password=[suaSenha]
 
 ## Hibernate
 spring.jpa.database-platform=org.hibernate.dialect.PostgreSQLDialect
